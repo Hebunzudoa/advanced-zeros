@@ -27,21 +27,14 @@ module.exports = function getZerosCount(number, base) {
 
   }
   
-  for (let  j=0, i=brr[j], counter=0, value=i; j<brr.length; ) {
-    if (value<=number)  {
-      if (value%brr[j]===0) {
-        counter++;
-        arr[j]+=counter;
-        counter=0;
-        value/=brr[j];
-      } else {
-        i+=brr[j];
-        value=i;
-      }
+  for (let  j=0, counter=0, value=number; j<brr.length; ) {
+    if (brr[j]<=value) {
+      value=~~(value/=brr[j]);
+      counter+=value;
     } else {
-      j++; 
-      i=brr[j];
-      value=i;
+      arr[j]=counter;
+      value=number;
+      j++;
       counter=0;
     }
   }
